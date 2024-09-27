@@ -9,7 +9,10 @@ const message = form.querySelector("textarea");
 
 form.addEventListener("submit", event => {
 	event.preventDefault();
-	//sendForm(serviceID,  templateID, formEl)
+
+	// 3개중에 하나라도 입력항목이 비어있으면 경고창 출력하면서 메일 전송 중지
+	if (!user_name.value.trim() || !user_email.value.trim() || !message.value.trim()) return alert("모든 입력 항목을 작성해주세요!");
+
 	emailjs.sendForm("service_c2odexb", "template_i3pd7id", form).then(
 		() => {
 			user_name.value = "";
